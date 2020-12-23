@@ -30,6 +30,36 @@ async function createUser(req, res) {
   }
 }
 
+async function getUser(req, res) {
+  try {
+    const { email } = req.query;
+
+    const opts = {
+      attributes: [
+        'firstName',
+        'lastName',
+        'email',
+      ]
+    }
+
+    const user = await UsersDao.findUser({email}, opts)
+  
+    const response = {
+      success: true,
+      data: user
+    }
+    res.json(response)
+  } catch (error) {
+    console.log(error)  
+    const response = {
+      success: false,
+      error: error.errors[0] ? error.errors[0].message : error.message
+    }
+    res.json(response)
+  }
+}
+
 module.exports = {
   createUser,
+  getUser,
 }
