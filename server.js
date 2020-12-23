@@ -5,6 +5,7 @@ const routes = require('./routes/index')
 
 const { connectDb } = require('./database');
 
+
 app.use(routes)
 
 app.listen(process.env.SERVER_PORT, async () => {

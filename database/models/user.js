@@ -21,6 +21,7 @@ exports.UserModel = (sequelize) => sequelize.define('User', {
   email: {
     type: DataTypes.STRING(50),
     allowNull: false,
+    unique: true,
     field: 'str_email'
   },
   password: {
